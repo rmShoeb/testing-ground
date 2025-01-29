@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-4">
+        <dx-number-box
+            label="Marks Acheived"
+            labelMode="outside"
+            format="fixedPoint"
+            [(value)]="marks"
+            [min]="0"
+            [max]="100"
+            [showSpinButtons]="true"
+            [showClearButton]="true"
+        ></dx-number-box>
+    </div>
+    <div class="col-4">
+        @if(marks() < 40) {
+            <div class="alert alert-danger" role="alert">
+                You have failed!
+            </div>
+        } @else if(marks() < 50) {
+            <div class="alert alert-warning" role="alert">
+                You have barely passed!
+            </div>
+        } @else if(marks() < 60) {
+            <div class="alert alert-info" role="alert">
+                You have passed!
+            </div>
+        } @else if(marks() < 70) {
+            <div class="alert alert-primary" role="alert">
+                You have passed with a good grade!
+            </div>
+        } @else {
+            <div class="alert alert-success" role="alert">
+                You have passed with a very good grade!
+            </div>
+        }
+    </div>
+</div>
+
+<div class="row"></div>

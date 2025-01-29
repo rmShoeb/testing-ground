@@ -1,0 +1,5 @@
+<div class="list-group">
+    @for (item of navigationItemList(); track $index) {
+        <a routerLink="{{item.router}}" routerLinkActive="active" ariaCurrentWhenActive="page" class="list-group-item list-group-item-action">{{item.uiLabel}}</a>
+    }
+</div>

@@ -1,0 +1,18 @@
+<dx-html-editor
+    [(value)]="comment"
+    height="500px"
+    width="100%"
+>
+    <dxo-toolbar>
+        <dxi-item name="bold"/>
+        <dxi-item name="italic"/>
+        <dxi-item name="alignRight"/>
+        <dxi-item name="alignLeft"/>
+        <dxi-item name="insertTable"/>
+    </dxo-toolbar>
+</dx-html-editor>
+
+
+<p class="lead">
+    {{comment()}}
+</p>

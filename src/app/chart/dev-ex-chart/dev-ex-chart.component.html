@@ -1,0 +1,19 @@
+<dx-chart [dataSource]="bellCurveData" [adjustOnZoom]="true" [barGroupPadding]="0">
+    <dxo-title text="Devextreme Histogram"></dxo-title>
+    @for (chart of chartList; track $index) {
+        <dxi-series
+            [type]="chart.type"
+            [name]="chart.name"
+            [argumentField]="chart.argumentField"
+            [valueField]="chart.valueField"
+            [barWidth]="chart.barWidth"
+            [barPadding]="chart.barPadding"
+            [color]="chart.color"
+        ></dxi-series>
+    }
+    <dxo-legend [visible]="false"></dxo-legend>
+    <dxo-argument-axis>
+        <dxo-tick [visible]="true"></dxo-tick>
+        <dxo-minor-tick [visible]="true"></dxo-minor-tick>
+    </dxo-argument-axis>
+</dx-chart>
