@@ -1,8 +1,8 @@
 import { Component, input, OnInit } from '@angular/core';
 import { FruitProduction } from '../chart.component';
 import { PlotlyModule } from 'angular-plotly.js';
-import { generateHistogramData, generateBellCurveData } from '../util';
 import * as PlotlyJS from 'plotly.js-dist-min';
+import { generateHistogramData, generateBellCurveData } from '../util';
 import { PlotlyChart } from '../interfaces';
 
 PlotlyModule.plotlyjs = PlotlyJS;
