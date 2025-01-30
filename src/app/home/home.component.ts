@@ -8,11 +8,5 @@ import { Component } from '@angular/core';
     styleUrl: './home.component.css'
 })
 export class HomeComponent {
-    imageSrc: string;
-
-    constructor() {
-        this.imageSrc = 'https://picsum.photos/750';
-    }
+    constructor() {}
 }
-
-// https://random.imagecdn.app/500/150

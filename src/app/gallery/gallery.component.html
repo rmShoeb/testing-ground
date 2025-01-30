@@ -1,0 +1,32 @@
+<div class="text-center">
+    <dx-gallery
+        [dataSource]="galleryDataSource"
+        [noDataText]="'Add Images'"
+        [title]="'DevExtreme Gallery'"
+        [height]="750"
+        [indicatorEnabled]="false"
+        [loop]="true"
+        [swipeEnabled]="true"
+        [showNavButtons]="true"
+        [stretchImages]="true"
+        [swipeEnabled]="true"
+    ></dx-gallery>
+    <div class="row">
+        <div class="col-sm-3">
+            <dx-select-box
+                [dataSource]="imageAPIs"
+                valueExpr="id"
+                displayExpr="name"
+                label="Select API to fetch Image"
+                labelMode="floating"
+                (onValueChanged)="selectionchanged($event)"
+            ></dx-select-box>
+        </div>
+        <div class="col-sm-3">
+            <dx-button
+                text="Add Image!"
+                (onClick)="addImage()"
+            ></dx-button>
+        </div>
+    </div>
+</div>
