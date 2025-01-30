@@ -1,13 +1,15 @@
 import { Component, signal, WritableSignal } from '@angular/core';
 import { DevExChartComponent } from "./dev-ex-chart/dev-ex-chart.component";
 import { PlotlyComponent } from "./plotly/plotly.component";
+import { ChartjsComponent } from "./chartjs/chartjs.component";
 
 @Component({
     selector: 'app-chart',
     standalone: true,
     imports: [
         DevExChartComponent,
-        PlotlyComponent
+        PlotlyComponent,
+        ChartjsComponent
     ],
     templateUrl: './chart.component.html',
     styleUrl: './chart.component.css'
