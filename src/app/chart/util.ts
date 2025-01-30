@@ -33,9 +33,7 @@ export function generateBellCurveData(data: FruitProduction[], points: number): 
 
     return Array.from({ length: points }, (_, i) => {
         const x = min + i * step;
-        const y =
-            (1 / (stdDev * Math.sqrt(2 * Math.PI))) *
-            Math.exp(-0.5 * ((x - avg) / stdDev) ** 2);
+        const y = 250 * (1 / (stdDev * Math.sqrt(2 * Math.PI))) * Math.exp(-0.5 * ((x - avg) / stdDev) ** 2);
         return { x, y };
     });
 }
