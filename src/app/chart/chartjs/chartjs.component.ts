@@ -16,17 +16,17 @@ import { ChartDataPoint } from '../interfaces';
 })
 export class ChartjsComponent implements OnInit {
     data = input.required<FruitProduction[]>();
-    @ViewChild(BaseChartDirective) chart: BaseChartDirective<'bar'> | undefined;
+    @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
 
-    public barChartOptions: ChartConfiguration<'bar'>['options'];
-    public barChartData: ChartData<'bar', ChartDataPoint[]> = { datasets: [] };
+    public barChartOptions: ChartConfiguration['options'];
+    public barChartData: ChartData<any, ChartDataPoint[]> = { datasets: [] };
 
     ngOnInit(): void {
         this.barChartOptions = this.prepareChartOptions();
         this.prepareChartData();
     }
 
-    prepareChartOptions(): ChartConfiguration<'bar'>['options'] {
+    prepareChartOptions(): ChartConfiguration['options'] {
         return {
             animation: false,
             responsive: true,
@@ -53,9 +53,10 @@ export class ChartjsComponent implements OnInit {
 
     prepareChartData(): void {
         const histogramData = generateHistogramData(this.data(), 20);
-        const bellCurveData = generateBellCurveData(this.data(), 20);
+        const bellCurveData = generateBellCurveData(this.data(), 40);
         this.barChartData.labels = [];
         this.barChartData.datasets.push({
+            type: 'bar',
             data: histogramData,
             label: "Histogram",
             parsing: {
@@ -64,6 +65,7 @@ export class ChartjsComponent implements OnInit {
             }
         });
         this.barChartData.datasets.push({
+            type: 'line',
             data: bellCurveData,
             label: "Normal Distribution Bell Curve",
             parsing: {
