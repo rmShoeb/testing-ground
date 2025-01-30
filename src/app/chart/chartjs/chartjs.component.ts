@@ -1,9 +1,13 @@
 import { Component, input, OnInit, ViewChild } from '@angular/core';
 import { FruitProduction } from '../chart.component';
 import { BaseChartDirective } from 'ng2-charts';
-import { ChartConfiguration, ChartData } from 'chart.js';
+import { ChartConfiguration, ChartData, Chart, registerables } from 'chart.js';
+import annotationPlugin from 'chartjs-plugin-annotation';
+
 import { generateBellCurveData, generateHistogramData } from '../util';
 import { ChartDataPoint } from '../interfaces';
+
+Chart.register(...registerables, annotationPlugin);
 
 @Component({
     selector: 'chartjs',
@@ -32,11 +36,22 @@ export class ChartjsComponent implements OnInit {
             responsive: true,
             scales: {
                 x: {
-                    type: 'linear', // Use 'linear' scale for numeric X-axis
+                    grid: { display: false },
+                    offset: false,
                     position: 'bottom',
+                    title: {
+                        display: true,
+                        text: 'X-Axis Text',
+                    },
+                    type: 'linear',
                 },
                 y: {
                     beginAtZero: true,
+                    grid: { display: false },
+                    title: {
+                        display: true,
+                        text: 'Y-Axis Text',
+                    },
                 },
             },
             plugins: { // https://github.com/chartjs/awesome#plugins
@@ -44,9 +59,53 @@ export class ChartjsComponent implements OnInit {
                     display: true,
                     text: "ChartJs (ng2-charts)"
                 },
-                legend: {
-                    display: true
+                subtitle: {
+                    display: true,
+                    text: "Cp: 1.1, Cpk: 0.5",
                 },
+                legend: { display: true },
+                annotation: {
+                    annotations: {
+                        // label1: {
+                        //     backgroundColor: 'transparent',
+                        //     content: ['Cp: 1.1', 'Cpk: 0.5'],
+                        //     position: 'end',
+                        //     type: 'label',
+                        //     xAdjust: -10,
+                        //     xValue: 'end',
+                        //     yAdjust: -10,
+                        //     yValue: 'end',
+                        // },
+                        line1: {
+                            type: 'line',
+                            xMin: 70,
+                            xMax: 70,
+                            borderColor: 'red',
+                            borderWidth: 2,
+                            label: {
+                                content: 'LSL 70',
+                                display: true,
+                                position: 'end',
+                                backgroundColor: 'transparent',
+                                color: 'red',
+                            },
+                        },
+                        line2: {
+                            type: 'line',
+                            xMin: 125,
+                            xMax: 125,
+                            borderColor: 'red',
+                            borderWidth: 2,
+                            label: {
+                                content: 'USL 125',
+                                display: true,
+                                position: 'end',
+                                backgroundColor: 'transparent',
+                                color: 'red',
+                            },
+                        }
+                    }
+                }
             },
         };
     }
@@ -56,22 +115,27 @@ export class ChartjsComponent implements OnInit {
         const bellCurveData = generateBellCurveData(this.data(), 40);
         this.barChartData.labels = [];
         this.barChartData.datasets.push({
-            type: 'bar',
+            // backgroundColor: 'rgb(96, 54, 196)',
+            barPercentage: 1.0, // Full width for the bar
+            categoryPercentage: 1.0, // Full width for the category
             data: histogramData,
             label: "Histogram",
             parsing: {
                 xAxisKey: 'x',
                 yAxisKey: 'y'
-            }
+            },
+            type: 'bar',
         });
         this.barChartData.datasets.push({
-            type: 'line',
+            // backgroundColor: 'rgb(5, 56, 25)',
             data: bellCurveData,
             label: "Normal Distribution Bell Curve",
             parsing: {
                 xAxisKey: 'x',
                 yAxisKey: 'y'
-            }
+            },
+            pointStyle: false,
+            type: 'line',
         });
     }
 
