@@ -32,10 +32,26 @@ export class PlotlyComponent implements OnInit {
         const histogramData = generateHistogramData(this.data(), 20)
         const bellCurveData = generateBellCurveData(this.data(), 40);
         this.chart.data.push({
+            type: "histogram",
+            x: this.data().map(point => point.produced),
+            // histfunc: "count" | "sum" | "avg" | "min" | "max"
+            // https://plotly.com/javascript/reference/histogram/#histogram-histnorm
+            nbinsx: 20,
+            marker: {
+                color: "#6be7ed",
+                line: { width: 1 },
+            },
+            name: "Histogram"
+        });
+        this.chart.data.push({
             x: histogramData.map(point => point.x),
             y: histogramData.map(point => point.y),
             type: "bar",
-            name: "Histogram"
+            name: "Histogram using Bar Chart",
+            marker: {
+                line: { width: 1 },
+            },
+            visible: "legendonly",
         });
         this.chart.data.push({
             x: bellCurveData.map(point => point.x),
@@ -49,7 +65,10 @@ export class PlotlyComponent implements OnInit {
         this.chart.layout = {
             bargap: 0,
             title: {
-                text: 'Plotly Angular Chart'
+                text: 'Plotly Angular Chart',
+                subtitle: {
+                    text: "Cp: 1.1, Cpk: 0.1",
+                }
             },
             xaxis: {
                 title: {
@@ -61,18 +80,21 @@ export class PlotlyComponent implements OnInit {
                     text: "Y-Axis Text"
                 }
             },
-            annotations: [
-                {
-                    align: "left",
-                    valign: "top",
-                    text: "Cp: 1.1<br>Cpk: 0.1",
-                    x: 1.1,
-                    y: 0.5,
-                    xref: 'paper',
-                    yref: 'paper',
-                    showarrow: false,
-                },
-            ],
+            // annotations: [
+            //     {
+            //         align: "left",
+            //         valign: "top",
+            //         text: "Cp: 1.1<br>Cpk: 0.1",
+            //         x: 1.1,
+            //         y: 0.5,
+            //         xref: 'paper',
+            //         yref: 'paper',
+            //         showarrow: false,
+            //     },
+            // ],
+            // legend: {
+            //     orientation: "h"
+            // },
             shapes: [
                 {
                     type: 'line',
@@ -112,28 +134,26 @@ export class PlotlyComponent implements OnInit {
                         textangle: 0,
                     }
                 },
-            ],
-            updatemenus: []
+            ]
         };
     }
 
     prepareConfig() {
         this.chart.config = {
+            displayModeBar: true,
+            displaylogo: false,
+            // modeBarButtonsToRemove: ['toImage'], // https://plotly.com/javascript/configuration-options/#remove-modebar-buttons
+            // responsive: true,
             scrollZoom: true,
             // staticPlot: true,
             toImageButtonOptions: {
-                format: 'svg', // one of png, svg, jpeg, webp
+                // format: 'svg', // one of png, svg, jpeg, webp
                 filename: 'custom_image',
-                height: 500,
-                width: 700,
-                scale: 1 // Multiply title/legend/axis/canvas sizes by this factor
+                scale: 1
             },
-            displayModeBar: true,
-            // modeBarButtonsToRemove: ['toImage'], // https://plotly.com/javascript/configuration-options/#remove-modebar-buttons
-            displaylogo: false
         };
     }
 }
 
-// https://plotly.com/javascript/is-plotly-free/
+// https://plotly.com/javascript
 // https://github.com/plotly/angular-plotly.js
