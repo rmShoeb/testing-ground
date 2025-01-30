@@ -16,21 +16,28 @@ import { generateBellCurveData, generateHistogramData } from '../util';
 })
 export class DevExChartComponent implements OnInit {
     data = input.required<FruitProduction[]>();
-    histogramData: ChartDataPoint[] = [];
-    bellCurveData: ChartDataPoint[] = [];
-    chartList: DevExChart[];
+    chartList: DevExChart[] = [];
+    chartData: DevExChartData[] = [];
 
-    constructor() {
-        this.chartList = this.createChartList();
-    }
+    constructor() { }
 
     ngOnInit(): void {
+        this.chartList = this.createChartList();
         this.prepareChartData();
     }
-    
+
     prepareChartData(): void {
-        this.histogramData = generateHistogramData(this.data(), 15)
-        this.bellCurveData = generateBellCurveData(this.data(), 15);
+        const histogramData = generateHistogramData(this.data(), 15)
+        const bellCurveData = generateBellCurveData(this.data(), 15);
+        this.chartData = histogramData.map((histPoint, index) => {
+            const bellPoint = bellCurveData[index];
+            return {
+                histX: histPoint.x,
+                histY: histPoint.y,
+                bellX: bellPoint.x,
+                bellY: bellPoint.y
+            };
+        });
     }
 
     createChartList(): DevExChart[] {
@@ -38,20 +45,25 @@ export class DevExChartComponent implements OnInit {
             {
                 name: "Bar Chart",
                 type: CHART.BAR,
-                dataSource: this.histogramData,
-                argumentField: "x",
-                valueField: "y",
+                argumentField: "histX",
+                valueField: "histY",
                 barPadding: 0
             },
             {
                 name: "Line Chart",
                 type: CHART.SPLINE,
-                dataSource: this.bellCurveData,
-                argumentField: "x",
-                valueField: "y",
+                argumentField: "bellX",
+                valueField: "bellY",
             }
         ];
     }
+}
+
+export interface DevExChartData {
+    histX: number;
+    histY: number;
+    bellX: number;
+    bellY: number;
 }
 
 

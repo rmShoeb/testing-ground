@@ -39,7 +39,7 @@ export class PlotlyComponent implements OnInit {
         });
         this.chart.data.push({
             x: bellCurveData.map(point => point.x),
-            y: bellCurveData.map(point => point.y * 250),
+            y: bellCurveData.map(point => point.y),
             type: "line",
             name: "Normal Distribution Bell Curve"
         });
@@ -134,3 +134,6 @@ export class PlotlyComponent implements OnInit {
         };
     }
 }
+
+// https://plotly.com/javascript/is-plotly-free/
+// https://github.com/plotly/angular-plotly.js
