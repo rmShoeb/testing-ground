@@ -12,7 +12,74 @@
     </dxo-toolbar>
 </dx-html-editor>
 
+<p class="lead">{{comment()}}</p>
 
-<p class="lead">
-    {{comment()}}
-</p>
+<hr>
+
+<div class="row">
+    <div class="col-3">
+        <label for="target" class="form-label">Target</label>
+        <input type="text" name="target" id="target" [(ngModel)]="target" class="form-control">
+    </div>
+    <div class="col-3">
+        <label for="tolerance" class="form-label">Tolerance</label>
+        <input type="text" name="tolerance" id="tolerance" [(ngModel)]="tolerance" class="form-control">
+    </div>
+    <div class="col-3">
+        <label for="minimum" class="form-label">Minimum</label>
+        <input type="text" name="minimum" id="minimum" [ngModel]="minimum()" class="form-control" [disabled]="true">
+    </div>
+    <div class="col-3">
+        <label for="maximum" class="form-label">Maximum</label>
+        <input type="text" name="maximum" id="maximum" [ngModel]="maximum()" class="form-control" [disabled]="true">
+    </div>
+</div>
+
+<hr>
+
+<div class="row">
+    <div class="col-3">
+        <dx-number-box
+            [(value)]="target"
+            label="Target"
+            [min]="0"
+            [max]="1000"
+            [showSpinButtons]="false"
+            [showClearButton]="true"
+            labelMode="outside"
+        ></dx-number-box>
+    </div>
+    <div class="col-3">
+        <dx-number-box
+            [(value)]="tolerance"
+            label="Tolerance"
+            [min]="0"
+            [max]="1000"
+            [showSpinButtons]="false"
+            [showClearButton]="true"
+            labelMode="outside"
+        ></dx-number-box>
+    </div>
+    <div class="col-3">
+        <dx-number-box
+            [value]="minimum()"
+            label="Minimum"
+            [showSpinButtons]="false"
+            [showClearButton]="true"
+            [readOnly]="true"
+            stylingMode="filled"
+            labelMode="outside"
+        ></dx-number-box>
+    </div>
+    <div class="col-3">
+        <dx-number-box
+            [value]="maximum()"
+            label="Maximum"
+            [showSpinButtons]="false"
+            [showClearButton]="true"
+            [readOnly]="true"
+            stylingMode="filled"
+            labelMode="outside"
+        ></dx-number-box>
+    </div>
+</div>
