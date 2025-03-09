@@ -6,6 +6,7 @@ import { SignalComponent } from './signal/signal.component';
 import { NgBlockComponent } from './ng-block/ng-block.component';
 import { ChartComponent } from './chart/chart.component';
 import { GalleryComponent } from './gallery/gallery.component';
+import { FormsComponent } from './forms/forms.component';
 
 export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -16,5 +17,6 @@ export const routes: Routes = [
     { path: 'ng-block', component: NgBlockComponent },
     { path: 'charts', component: ChartComponent },
     { path: 'gallery', component: GalleryComponent },
+    { path: 'forms', component: FormsComponent },
     { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];

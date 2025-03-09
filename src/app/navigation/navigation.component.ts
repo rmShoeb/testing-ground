@@ -26,7 +26,8 @@ export class NavigationComponent {
             {router: "/signal", uiLabel: "Signal Testing"},
             {router: "/ng-block", uiLabel: "Angular Blocks Testing"},
             {router: "/charts", uiLabel: "Charting"},
-            {router: "/gallery", uiLabel: "Gallery"}
+            {router: "/gallery", uiLabel: "Gallery"},
+            {router: "/forms", uiLabel: "Forms Testing"},
         ];
 
         return navigationList;

@@ -1,0 +1,39 @@
+<p class="h1 text-center">Form Group</p>
+<hr>
+
+<form [formGroup]="profileForm" (ngSubmit)="printForm()">
+    <div class="mb-3">
+        <label for="first-name" class="form-label">First Name: </label>
+        <input type="text" class="form-control" id="first-name" formControlName="firstName">
+    </div>
+    <div class="mb-3">
+        <label for="last-name" class="form-label">Last Name: </label>
+        <input type="text" class="form-control" id="last-name" formControlName="lastName">
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email: </label>
+        <input type="email" class="form-control" id="email" formControlName="email">
+    </div>
+    <div formGroupName="address">
+        <div class="mb-3">
+            <label class="form-label" for="street">Street: </label>
+            <input id="street" type="text" formControlName="street" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="city">City: </label>
+            <input id="city" type="text" formControlName="city" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="state">State: </label>
+            <input id="state" type="text" formControlName="state" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="zip">Zip Code: </label>
+            <input id="zip" type="text" formControlName="zip" class="form-control">
+        </div>
+    </div>
+
+    <div class="mb-3">
+        <button type="submit" class="btn btn-primary" [disabled]="!profileForm.valid">Submit Button</button>
+    </div>
+</form>
