@@ -1,5 +1,30 @@
 <p class="h1 text-center">Form Array</p>
 <hr>
-
-<p>HMR test</p>
-<p>text</p>
+<div [formGroup]="form">
+    <ng-container formArrayName="lessons">
+        @for (lessonForm of lessons.controls; track $index) {
+            <div class="row" [formGroup]="getNameGroup($index)">
+                <div class="col-4">
+                    <input type="text" class="form-control" formControlName="title" placeholder="Enter Title">
+                </div>
+                <div class="col-4">
+                    <input type="text" class="form-control" formControlName="level" placeholder="Enter Level">
+                </div>
+                <div class="col-4">
+                    <button class="btn btn-primary" (click)="deleteLesson($index)">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+        }
+    </ng-container>
+    <hr>
+    <div class="row">
+        <div class="col-6 text-start">
+            <button class="btn btn-primary" (click)="addLesson()"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <div class="col-6 text-end">
+            <button type="submit" class="btn btn-primary" [disabled]="!form.valid" (click)="printForm()">Submit Button</button>
+        </div>
+    </div>
+</div>
