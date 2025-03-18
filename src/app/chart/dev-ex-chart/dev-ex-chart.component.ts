@@ -1,9 +1,9 @@
 import { Component, input, OnInit } from '@angular/core';
 import { DxChartModule } from 'devextreme-angular';
-import { FruitProduction } from '../chart.component';
-import { ChartDataPoint, DevExChart } from '../interfaces';
+import { DevExChart } from '../interfaces';
 import { CHART } from '../enums';
 import { generateBellCurveData, generateHistogramData } from '../util';
+import { FruitProduction } from '../../types/fruitProduction.type';
 
 @Component({
     selector: 'dev-ex-chart',

@@ -1,11 +1,10 @@
 import { Component, input, OnInit, ViewChild } from '@angular/core';
-import { FruitProduction } from '../chart.component';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartConfiguration, ChartData, Chart, registerables } from 'chart.js';
 import annotationPlugin from 'chartjs-plugin-annotation';
-
 import { generateBellCurveData, generateHistogramData } from '../util';
 import { ChartDataPoint } from '../interfaces';
+import { FruitProduction } from '../../types/fruitProduction.type';
 
 Chart.register(...registerables, annotationPlugin);
 

@@ -1,6 +1,6 @@
 import { mean, standardDeviation } from 'simple-statistics';
-import { FruitProduction } from './chart.component';
 import { ChartDataPoint } from './interfaces';
+import { FruitProduction } from '../types/fruitProduction.type';
 
 export function generateHistogramData(data: FruitProduction[], binCount: number): ChartDataPoint[] {
     const numericValues = data.map(obj => obj.produced);

@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { FruitProduction } from '../chart.component';
+import { FruitProduction } from '../../types/fruitProduction.type';
 
 @Component({
     selector: 'ngx-charts-test',

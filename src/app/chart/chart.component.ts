@@ -2,6 +2,7 @@ import { Component, signal, WritableSignal } from '@angular/core';
 import { DevExChartComponent } from "./dev-ex-chart/dev-ex-chart.component";
 import { PlotlyComponent } from "./plotly/plotly.component";
 import { ChartjsComponent } from "./chartjs/chartjs.component";
+import { FruitProduction } from '../types/fruitProduction.type';
 
 @Component({
     selector: 'app-chart',
@@ -132,10 +133,4 @@ export class ChartComponent {
         ];
         return fruitProductionData;
     }
-}
-
-export interface FruitProduction {
-    fruitName: string,
-    year: number,
-    produced: number
 }
